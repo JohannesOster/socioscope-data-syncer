@@ -18,11 +18,17 @@ export async function POST(req: Request) {
       { status: 401 },
     );
   }
+  // Mark the cookie as Secure only when the request actually came in over
+  // HTTPS — otherwise browsers would silently drop it on plain-HTTP deploys.
+  const proto =
+    req.headers.get("x-forwarded-proto") ?? new URL(req.url).protocol;
+  const isHttps = proto === "https" || proto === "https:";
+
   const res = NextResponse.json({ ok: true });
   const common = {
     httpOnly: true,
     sameSite: "lax" as const,
-    secure: process.env.NODE_ENV === "production",
+    secure: isHttps,
     path: "/",
     maxAge: 60 * 60 * 24 * 30,
   };

@@ -106,12 +106,15 @@ export async function putObject(
   body: Buffer | Uint8Array | string,
   contentType?: string,
 ): Promise<void> {
+  // AES256 header is required by the prod corpus bucket policy and harmless
+  // on the dev bucket. Sending it unconditionally keeps the app portable.
   await client.send(
     new PutObjectCommand({
       Bucket,
       Key: key,
       Body: body,
       ContentType: contentType,
+      ServerSideEncryption: "AES256",
     }),
   );
 }
@@ -131,6 +134,7 @@ export async function moveObject(
       Bucket,
       CopySource: `/${Bucket}/${encodeURIComponent(fromKey).replace(/%2F/g, "/")}`,
       Key: toKey,
+      ServerSideEncryption: "AES256",
     }),
   );
   await client.send(new DeleteObjectCommand({ Bucket, Key: fromKey }));

@@ -8,3 +8,6 @@ INSTANCE_PROFILE=data-syncer-ec2
 AMI=ami-0d4483a9dfc5a29c6
 INSTANCE_TYPE=t4g.micro
 REGION=eu-west-3
+INSTANCE_ID=i-05ef30d06c7d90cb1
+PUBLIC_DNS=ec2-15-237-188-112.eu-west-3.compute.amazonaws.com
+PUBLIC_IP=15.237.188.112
