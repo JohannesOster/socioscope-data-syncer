@@ -15,7 +15,7 @@ pnpm dev          # http://localhost:3000
 AWS_ACCESS_KEY_ID=…
 AWS_SECRET_ACCESS_KEY=…
 AWS_REGION=eu-west-3
-S3_BUCKET=socioscope-data-syncer-dev    # or thesocioscope-corpus
+S3_BUCKET=socioscope-data-syncer-dev    # or thesocioscope-corpus for production
 SHARED_PASSWORD=…
 ```
 
@@ -40,13 +40,3 @@ AWS_REGION=eu-west-3
 S3_BUCKET=thesocioscope-corpus
 SHARED_PASSWORD=…
 ```
-
-To switch the running instance between dev and prod buckets without redeploying:
-
-```bash
-ssh -i ~/.ssh/data-syncer.pem ubuntu@<host> \
-  "sed -i 's/socioscope-data-syncer-dev/thesocioscope-corpus/' ~/data-syncer/.env.local \
-   && sudo systemctl restart data-syncer"
-```
-
-(Reverse the sed args to roll back.)
