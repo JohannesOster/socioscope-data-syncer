@@ -1,0 +1,10 @@
+# Created by Claude Code on 2026-05-04
+VPC_ID=vpc-e2d6378a
+SECURITY_GROUP_ID=sg-0de1cd725aba35c05
+KEY_PAIR=data-syncer
+KEY_PAIR_FILE=/Users/johannesoster/.ssh/data-syncer.pem
+IAM_ROLE=data-syncer-ec2
+INSTANCE_PROFILE=data-syncer-ec2
+AMI=ami-0d4483a9dfc5a29c6
+INSTANCE_TYPE=t4g.micro
+REGION=eu-west-3
